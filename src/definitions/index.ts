@@ -12,6 +12,17 @@ declare namespace interfaces {
     deletedAt?: Date;
     drinks?: object[];
   }
+
+  interface ReviewData {
+    id: number;
+    userId: number;
+    drinkId: number;
+    rating: number;
+    text: string;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt?: Date;
+  }
 }
 
 export = interfaces;
