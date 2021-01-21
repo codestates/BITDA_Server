@@ -42,4 +42,17 @@ export default class Bookmark extends BaseEntity {
   })
   @JoinColumn({ name: 'drinkId' })
   public drink: Drink;
+
+  static async bookMarkList(userId: number): Promise<object[]> {
+    return await this.createQueryBuilder('bookmark')
+      .select([
+        'bookmark.id',
+        'drink.id',
+        'drink.drinkName',
+        'drink.drinkImage',
+      ])
+      .leftJoin('bookmark.drink', 'drink')
+      .where('bookmark.userId = :userId', { userId })
+      .getMany();
+  }
 }

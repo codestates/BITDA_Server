@@ -1,6 +1,5 @@
-
 import { NextFunction, Request, Response } from 'express';
-import User from '../../entity/User';
+import Bookmark from '../../entity/Bookmark';
 import { UserData } from '../../definitions';
 export default async (
   req: Request,
@@ -9,8 +8,8 @@ export default async (
 ): Promise<void | Response> => {
   try {
     const id: number = res.locals.decodedId;
-    const bookMarkList: UserData = await User.bookMarkList(id);
-    res.status(200).send({ drinks: bookMarkList.drinks });
+    const drinks: object[] = await Bookmark.bookMarkList(id);
+    res.status(200).send({ drinks });
   } catch (err) {
     next(err);
   }
