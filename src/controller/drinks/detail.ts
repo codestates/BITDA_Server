@@ -13,7 +13,7 @@ export default async (req: Request, res: Response): Promise<void> => {
       .where('user.id = :id', { id: id })
       .getOne();
     console.log(checkBookMark);
-    // const checkBookMark = await Drink.checkBookMark(id)
+   
     for (let i = 0; i < checkBookMark.drinks.length; i++) {
       if (checkBookMark.drinks[i].id === Number(req.params.drinkId)) {
         res.send({ ...detail, bookmark: true });
