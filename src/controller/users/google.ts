@@ -23,10 +23,11 @@ export default async (
 
     const email: string = googleUserInfo.data.email;
     const userName: string = googleUserInfo.data.name;
+    const socialId: string = googleUserInfo.data.id;
     const userImage: string = googleUserInfo.data.picture;
     const provider: string = 'google';
 
-    const user: UserData = await User.findOne({ email });
+    const user: UserData = await User.findOne({ socialId });
 
     if (user) {
       const accessToken: string = createToken(
@@ -43,6 +44,7 @@ export default async (
     } else {
       const newUser: UserData = await User.socialRegister(
         email,
+        socialId,
         userName,
         userImage,
         provider

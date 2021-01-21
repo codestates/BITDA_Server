@@ -20,6 +20,8 @@ export default class User extends BaseEntity {
   userName: string;
   @Column()
   email: string;
+  @Column({ default: 'localUser' })
+  socialId: string;
   @Column({ default: 'socialPassword' })
   password: string;
   @Column({ default: 'noPath' })
@@ -73,6 +75,7 @@ export default class User extends BaseEntity {
 
   static async socialRegister(
     email: string,
+    socialId: string,
     userName: string,
     userImage: string,
     provider: string
@@ -84,6 +87,7 @@ export default class User extends BaseEntity {
         .values([
           {
             email,
+            socialId,
             userName,
             userImage,
             provider,
@@ -119,7 +123,7 @@ export default class User extends BaseEntity {
       .execute();
     return this.findOne({ id });
   }
-  
+
   static async bookMarkList(id: number): Promise<User> {
     const drinks = await this.createQueryBuilder('user')
       .select(['user.id', 'drinks.id', 'drinks.drinkName', 'drinks.drinkImage'])
@@ -128,6 +132,5 @@ export default class User extends BaseEntity {
       .getOne();
 
     return drinks;
-
   }
 }

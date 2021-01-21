@@ -23,12 +23,13 @@ export default async (
     });
 
     const kakao = kakaoUserInfo.data;
-    const email: string = kakao.kakao_account.email;
+    const email: string = kakao.kakao_account.email || '카카오 계정';
+    const socialId: string = kakao.id;
     const userName: string = kakao.properties.nickname;
     const userImage: string = kakao.properties.thumbnail_image;
     const provider: string = 'kakao';
 
-    const user: UserData = await User.findOne({ email });
+    const user: UserData = await User.findOne({ socialId });
 
     if (user) {
       const accessToken: string = createToken(
@@ -45,6 +46,7 @@ export default async (
     } else {
       const newUser: UserData = await User.socialRegister(
         email,
+        socialId,
         userName,
         userImage,
         provider
