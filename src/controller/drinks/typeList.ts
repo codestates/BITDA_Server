@@ -9,14 +9,14 @@ export default async (req: Request, res: Response): Promise<void> => {
       req.body.type,
       req.body.price,
       req.body.taste,
-      req.body.origin
-    );
+     
+     );
     const filteredStronglist = await Drink.strongList(
       req.body.alcohol,
       req.body.type,
       req.body.price,
       req.body.taste,
-      req.body.origin
+    
     ); 
 	if (req.body.alcohol === '도수 있는 편') {
 		filteredStronglist.map((data) => {

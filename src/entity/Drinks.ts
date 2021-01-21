@@ -7,18 +7,12 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
-  LessThan,
-  MoreThan
-  
 } from 'typeorm';
-
 
 import Review from './Review';
 
-
 @Entity()
 export default class Drink extends BaseEntity {
-  
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -64,35 +58,72 @@ export default class Drink extends BaseEntity {
   @OneToMany((type) => Review, (review) => review.drink)
   review: Review[];
 
-  
-
-  static allDrinkList(){
-   return this.createQueryBuilder("drink")
-   .getMany();
+  static allDrinkList() {
+    return this.createQueryBuilder('drink').getMany();
   }
-  static detailView(id){
-    return this.createQueryBuilder("drink")
-    .where("drink.id = :id", {id})
-    .getOne();
+  static detailView(id) {
+    return this.createQueryBuilder('drink')
+      .where('drink.id = :id', { id })
+      .getOne();
   }
-  
-  static weakList(alcohol: string, type: string, price: string, taste: string, origin: string){
-   return this.createQueryBuilder("drink")
-    .where("drink.alcohol < 15 ", {alcohol})
-    .andWhere("drink.type = :type", { type })
-    .andWhere("drink.price = :price", { price })
-    .andWhere("drink.taste = :taste", { taste })
-    .andWhere("drink.origin = :origin", { origin })
-    .getMany();
-    }
-    static strongList(alcohol: string, type: string, price: string, taste: string, origin: string){
-      return this.createQueryBuilder("drink")
-       .where("drink.alcohol > 14 ", {alcohol})
-       .andWhere("drink.type = :type", { type })
-       .andWhere("drink.price = :price", { price })
-       .andWhere("drink.taste = :taste", { taste })
-       .andWhere("drink.origin = :origin", { origin })
-       .getMany();
-       }
 
+  static weakList(
+    alcohol: string,
+    type: string,
+    price: string,
+    taste: string,
+  
+  ) {
+    return this.createQueryBuilder('drink')
+      .where('drink.alcohol < 15 ', { alcohol })
+      .andWhere('drink.type = :type', { type })
+      .andWhere('drink.price = :price', { price })
+      .andWhere('drink.taste = :taste', { taste })
+      .getMany();
+  }
+  static strongList(
+    alcohol: string,
+    type: string,
+    price: string,
+    taste: string,
+   
+  ) {
+    return this.createQueryBuilder('drink')
+      .where('drink.alcohol > 14 ', { alcohol })
+      .andWhere('drink.type = :type', { type })
+      .andWhere('drink.price = :price', { price })
+      .andWhere('drink.taste = :taste', { taste })
+      .getMany();
+  }
+  static addDrinkList(
+    drinkName: string,
+    type: string,
+    price: string,
+    taste: string,
+    ingredients: string,
+    alcohol: number,
+    origin: string,
+    url: string,
+    desc: string,
+    img: string
+  ) {
+    return this.createQueryBuilder()
+      .insert()
+      .into(Drink)
+      .values([
+        {
+          drinkName: drinkName,
+          type: type,
+          price: price,
+          taste: taste,
+          ingredient: ingredients,
+          alcohol: alcohol,
+          origin: origin,
+          url: url,
+          desc: desc,
+          drinkImage: img,
+        },
+      ])
+      .execute();
+  }
 }
