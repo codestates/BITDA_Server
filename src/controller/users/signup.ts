@@ -23,7 +23,7 @@ export default async (
         res.status(401).send({ message: '회원가입에 실패하였습니다.' });
         return;
       } else {
-        res.status(201).send('success');
+        res.status(201).send({ message: 'success' });
         return;
       }
     }
