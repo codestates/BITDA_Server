@@ -8,9 +8,8 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-
 import Review from './Review';
-
+import Bookmark from './Bookmark';
 @Entity()
 export default class Drink extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -58,22 +57,20 @@ export default class Drink extends BaseEntity {
   @OneToMany((type) => Review, (review) => review.drink)
   review: Review[];
 
+  @OneToMany((type) => Bookmark, (bookmark) => bookmark.drink)
+  bookmark: Bookmark[];
+
   static allDrinkList() {
     return this.createQueryBuilder('drink').getMany();
   }
+
   static detailView(id) {
     return this.createQueryBuilder('drink')
       .where('drink.id = :id', { id })
       .getOne();
   }
 
-  static weakList(
-    alcohol: string,
-    type: string,
-    price: string,
-    taste: string,
-  
-  ) {
+  static weakList(alcohol: string, type: string, price: string, taste: string) {
     return this.createQueryBuilder('drink')
       .where('drink.alcohol < 15 ', { alcohol })
       .andWhere('drink.type = :type', { type })
@@ -81,12 +78,12 @@ export default class Drink extends BaseEntity {
       .andWhere('drink.taste = :taste', { taste })
       .getMany();
   }
+
   static strongList(
     alcohol: string,
     type: string,
     price: string,
-    taste: string,
-   
+    taste: string
   ) {
     return this.createQueryBuilder('drink')
       .where('drink.alcohol > 14 ', { alcohol })
@@ -95,6 +92,7 @@ export default class Drink extends BaseEntity {
       .andWhere('drink.taste = :taste', { taste })
       .getMany();
   }
+
   static addDrinkList(
     drinkName: string,
     type: string,

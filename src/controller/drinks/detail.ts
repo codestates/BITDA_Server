@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import Drink from '../../entity/Drinks';
 import User from '../../entity/User';
 export default async (req: Request, res: Response): Promise<void> => {
-  try {
+  /*   try {
     const id = res.locals.decodedId;
     console.log(id);
     const detail = await Drink.detailView(req.params.drinkId);
@@ -23,5 +23,5 @@ export default async (req: Request, res: Response): Promise<void> => {
     }
   } catch (err) {
     res.status(404).send({ message: 'error message ' });
-  }
+  } */
 };
