@@ -70,29 +70,6 @@ export default class Drink extends BaseEntity {
       .getOne();
   }
 
-  static weakList(alcohol: string, type: string, price: string, taste: string) {
-    return this.createQueryBuilder('drink')
-      .where('drink.alcohol < 15 ', { alcohol })
-      .andWhere('drink.type = :type', { type })
-      .andWhere('drink.price = :price', { price })
-      .andWhere('drink.taste = :taste', { taste })
-      .getMany();
-  }
-
-  static strongList(
-    alcohol: string,
-    type: string,
-    price: string,
-    taste: string
-  ) {
-    return this.createQueryBuilder('drink')
-      .where('drink.alcohol > 14 ', { alcohol })
-      .andWhere('drink.type = :type', { type })
-      .andWhere('drink.price = :price', { price })
-      .andWhere('drink.taste = :taste', { taste })
-      .getMany();
-  }
-
   static addDrinkList(
     drinkName: string,
     type: string,
