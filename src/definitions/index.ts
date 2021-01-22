@@ -32,6 +32,13 @@ declare namespace interfaces {
       drinkImage: string;
     };
   }
+
+  interface TypeList {
+    type?: string;
+    price?: string;
+    taste?: string;
+    alcohol?: any;
+  }
 }
 
 export = interfaces;
