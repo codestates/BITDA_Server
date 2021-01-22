@@ -57,4 +57,34 @@ export default class Bookmark extends BaseEntity {
       .where('bookmark.userId = :userId', { userId })
       .getMany();
   }
+  static addLike(
+    userId,
+    drinkId
+  ) {
+    return this.createQueryBuilder()
+        .insert()
+        .into(Bookmark)
+        .values([
+          {
+            userId:userId,
+            drinkId:drinkId
+          },
+        ])
+        .execute()
+      }
+      static removeLike(
+        userId,
+        drinkId
+      ) {
+        return this.createQueryBuilder()
+            .softDelete()
+            .from(Bookmark)
+            .where(
+              "userId =:userId", { userId } 
+            )
+            .andWhere(
+              "drinkId = :drinkId", { drinkId }
+            )
+            .execute()
+          }
 }

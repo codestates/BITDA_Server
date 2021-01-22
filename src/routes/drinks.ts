@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/list', drinkController.list);
 router.get('/detail/:drinkId', checkToken, drinkController.detail);
 router.post('/list/type', drinkController.typeList);
-router.post('/like', drinkController.like);
-router.post('/unlike', drinkController.unlike);
+router.post('/like', checkToken,drinkController.like);
+router.post('/unlike', checkToken, drinkController.unlike);
 router.post('/add', upload.single('img'),drinkController.add);
 
 export default router;
