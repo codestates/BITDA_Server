@@ -11,6 +11,8 @@ import {
 } from 'typeorm';
 import Drink from './Drinks';
 import User from './User';
+import { BookmarkDrinks } from '../definitions';
+
 @Entity()
 export default class Bookmark extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -43,7 +45,7 @@ export default class Bookmark extends BaseEntity {
   @JoinColumn({ name: 'drinkId' })
   public drink: Drink;
 
-  static async bookMarkList(userId: number): Promise<object[]> {
+  static async bookMarkList(userId: number): Promise<BookmarkDrinks[]> {
     return await this.createQueryBuilder('bookmark')
       .select([
         'bookmark.id',

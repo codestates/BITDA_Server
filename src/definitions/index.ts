@@ -23,6 +23,15 @@ declare namespace interfaces {
     updatedAt: Date;
     deletedAt?: Date;
   }
+
+  interface BookmarkDrinks {
+    id: number;
+    drink: {
+      id: number;
+      drinkName: string;
+      drinkImage: string;
+    };
+  }
 }
 
 export = interfaces;
