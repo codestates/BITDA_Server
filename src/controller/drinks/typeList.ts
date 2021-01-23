@@ -8,6 +8,7 @@ export default async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    const skip: number = Number(req.params.skip);
     const { category, price, taste, alcohol } = req.body;
     const typeList: TypeList = {};
 
@@ -32,6 +33,8 @@ export default async (
     const drinks = await Drink.find({
       select: ['id', 'drinkName', 'drinkImage', 'alcohol'],
       where: typeList,
+      skip,
+      take: 15,
     });
 
     res.status(200).send(drinks);
