@@ -3,7 +3,8 @@ import Drink from '../../entity/Drinks';
 
 export default async (req: Request, res: Response): Promise<void> => {
   try {
-    const drinkList = await Drink.allDrinkList();
+    const skip: number = Number(req.params.skip);
+    const drinkList = await Drink.allDrinkList(skip);
     if (drinkList) {
       res.send(drinkList);
     }

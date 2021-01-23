@@ -60,8 +60,8 @@ export default class Drink extends BaseEntity {
   @OneToMany((type) => Bookmark, (bookmark) => bookmark.drink)
   bookmark: Bookmark[];
 
-  static allDrinkList() {
-    return this.createQueryBuilder('drink').getMany();
+  static allDrinkList(skip: number) {
+    return this.createQueryBuilder('drink').skip(skip).take(15).getMany();
   }
 
   static detailView(id) {
