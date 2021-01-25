@@ -38,7 +38,7 @@
       "typeorm": "0.2.30"
    },
    "scripts": {
-      "start": "node dist/app.ts",
+      "start": "node dist/app.js",
       "build": "tsc",
       "dev": "nodemon src/app.ts"
    }
