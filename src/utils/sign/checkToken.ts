@@ -15,7 +15,6 @@ export default async (
       const secret = process.env.JWT_SECRET;
       const id = jwt.verify(token, secret, (err, verifiedJwt: any) => {
         if (err) {
-          console.log('토큰에 문제가 있습니다.');
           res.send(err.message);
         } else {
           return verifiedJwt.id;
