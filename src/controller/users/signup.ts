@@ -9,7 +9,6 @@ export default async (
   try {
     const { email, password, userName } = req.body;
     const user = await User.findOne({ email });
-    console.log(user);
     if (user) {
       res.status(400).send({ message: '중복된 이메일입니다.' });
     } else {

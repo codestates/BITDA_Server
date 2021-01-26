@@ -10,7 +10,6 @@ export default async (
     const id: number = res.locals.decodedId;
 
     const user: UserData = await User.findOne({ id });
-    console.log(user);
     if (user) {
       res.clearCookie('accessToken').status(200).send({ message: 'success' });
     } else {
