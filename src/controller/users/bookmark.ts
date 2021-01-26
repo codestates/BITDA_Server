@@ -11,7 +11,6 @@ export default async (
     const id: number = res.locals.decodedId;
     const drinks: BookmarkDrinks[] = await Bookmark.bookMarkList(id);
 
-    console.log(drinks[0].drink.id);
     res.status(200).send({ drinks });
   } catch (err) {
     next(err);
