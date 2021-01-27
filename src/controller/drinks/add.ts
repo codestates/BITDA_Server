@@ -17,8 +17,8 @@ export default async (req, res: Response): Promise<void> => {
         req.file.location
       );
     }
-    res.send({ message: 'success' });
+    res.status(200).send({ message: 'success' });
   } catch (err) {
-    res.send({ message: 'error message' });
+    res.status(404).send({ message: 'error message' });
   }
 };
