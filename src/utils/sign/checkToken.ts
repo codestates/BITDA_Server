@@ -24,7 +24,7 @@ export default async (
       res.locals.decodedId = id;
       next();
     } else {
-      res.status(403).send({ message: '먼저 로그인을 진행해주세요' });
+      next();
     }
   } catch (err) {
     next(err);
