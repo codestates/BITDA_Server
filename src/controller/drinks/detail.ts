@@ -17,9 +17,9 @@ export default async (req: Request, res: Response): Promise<void> => {
       }
     }
     if (result === true) {
-      res.send({ ...detail, bookmark: true });
+      res.status(200).send({ ...detail, bookmark: true });
     } else {
-      res.send({ ...detail, bookmark: false });
+      res.status(200).send({ ...detail, bookmark: false });
     }
   } catch (err) {
     res.status(404).send({ message: 'error message ' });

@@ -6,9 +6,9 @@ export default async (req: Request, res: Response): Promise<void> => {
     const skip: number = Number(req.params.skip);
     const drinkList = await Drink.allDrinkList(skip);
     if (drinkList) {
-      res.send(drinkList);
+      res.status(200).send(drinkList);
     }
   } catch (err) {
-    res.send({ message: 'error message ' });
+    res.status(404).send({ message: 'error message ' });
   }
 };
