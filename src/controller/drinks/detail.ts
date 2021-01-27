@@ -6,18 +6,22 @@ export default async (req: Request, res: Response): Promise<void> => {
   try {
     const id = res.locals.decodedId;
     const detail = await Drink.detailView(req.params.drinkId);
-    const check: BookmarkDrinks[] = await Bookmark.bookMarkList(id);
-    let result;
-    for (let i = 0; i < check.length; i++) {
-      if (check[i].drink.id === Number(req.params.drinkId)) {
-        result = true;
-        break;
-      } else {
-        continue;
+    if (id) {
+      const check: BookmarkDrinks[] = await Bookmark.bookMarkList(id);
+      let result;
+      for (let i = 0; i < check.length; i++) {
+        if (check[i].drink.id === Number(req.params.drinkId)) {
+          result = true;
+          break;
+        } else {
+          continue;
+        }
       }
-    }
-    if (result === true) {
-      res.status(200).send({ ...detail, bookmark: true });
+      if (result === true) {
+        res.status(200).send({ ...detail, bookmark: true });
+      } else {
+        res.status(200).send({ ...detail, bookmark: false });
+      }
     } else {
       res.status(200).send({ ...detail, bookmark: false });
     }
