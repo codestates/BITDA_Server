@@ -28,7 +28,10 @@ export default class User extends BaseEntity {
   @Column({ default: 'socialPassword' })
   password: string;
 
-  @Column({ default: 'noPath' })
+  @Column({
+    default:
+      'https://bitda-images.s3.ap-northeast-2.amazonaws.com/profile-images/1611826751697defaultUser.png',
+  })
   userImage: string;
 
   @Column({ default: 'local' })
