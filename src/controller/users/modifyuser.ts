@@ -17,7 +17,11 @@ export default async (
       let userName: string = req.body.userName || user.userName;
       let userImage: string = user.userImage;
 
-      if (req.file && user.userImage !== 'noPath') {
+      if (
+        req.file &&
+        user.userImage !==
+          'https://bitda-images.s3.ap-northeast-2.amazonaws.com/profile-images/1611826751697defaultUser.png'
+      ) {
         const key = user.userImage.split('/');
         const delFileName = key[key.length - 1];
         deleteProfile(delFileName);
