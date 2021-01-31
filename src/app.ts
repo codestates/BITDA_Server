@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: ['https://www.bitda.ga'],
     methods: ['GET', 'POST', 'OPTIONS', 'PATCH', 'DELETE'],
     credentials: true,
   })
