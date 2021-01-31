@@ -13,7 +13,7 @@ export default async (
   try {
     const { authorizationCode } = req.body;
     const kakaoResponse = await axios.post(
-      `https://kauth.kakao.com/oauth/token?code=${authorizationCode}&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_uri=http://localhost:3000/users/signin&grant_type=authorization_code`
+      `https://kauth.kakao.com/oauth/token?code=${authorizationCode}&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_uri=https://www.bitda.ga/users/signin&grant_type=authorization_code`
     );
     const kakaoAccessToken = kakaoResponse.data.access_token;
     const kakaoUserInfo = await axios.get('https://kapi.kakao.com/v2/user/me', {
