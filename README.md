@@ -29,7 +29,7 @@
   <li>
     <div>👸🏻  박유진 (Back-end & team leader)<div><br/>
     <div>📧  email : <a href='mailto:yoojin.rameau@gmail.com'>yoojin.rameau@gmail.com</a></div><br/>
-    <div>🐱  git : <a href=' https://github.com/rameau17'>https://github.com/rameau17</a></div>
+    <div>🐱  git : <a href='https://github.com/rameau17'>https://github.com/rameau17</a></div>
   </li>
   <br/>
   <li>
